@@ -17,3 +17,19 @@ I chose this issue because it has a clearly defined problem, is reproducible, an
 **Setup confirmation:** [X] App runs locally at localhost:5173
 
 **Cohort ledger:** [X] Issue added to cohort ledger
+
+## Week 8 — Reproduction & solution planning
+
+**Reproduction commit link:** [link to commit documenting the reproduced issue]
+
+**Reproduction summary:**
+I reproduced issue number 148 by running the existing skill extractor unit tests and the examples from the GitHub issue description. To run the SkillExtractor tests, I ran pytest tests/unit/test_skill_extractor.py -v. I also ran the example text from the GitHub issue description using SkillExtractor.extract_skills(). The JavaScript example returned no detected skills, and the TypeScript example detected React but did not detect TypeScript or JavaScript. The existing test_javascript_detection and test_text_with_typescript_files tests also failed for the same missing detections.
+
+**PLAN.md link:** [link to PLAN.md in your fork]
+
+**Walkthrough video (recommended):**
+
+**Blockers or open questions:**
+There are many potential things that could cause these issues. I still need to determine whether the failure is caused by missing language patterns, incorrect filename extension handling, etc. The issue could potentially be caused by other less obvious areas as well, such as normalization, confidenct thresholds, etc. 
+
+I'm still investigating which JavaScript and TypeScript language features the extractor is intended to recognize. The existing tests rely on code snippets rather than plain-language descriptions, so I need to trace how SkillExtractor detects language-specific syntax before implementing a fix.
