@@ -20,12 +20,12 @@ I chose this issue because it has a clearly defined problem, is reproducible, an
 
 ## Week 8 — Reproduction & solution planning
 
-**Reproduction commit link:** [link to commit documenting the reproduced issue]
+**Reproduction commit link:** https://github.com/OzzyT26/pathreview/commit/40488ff41e7c9b951eb2d3343933c178faa548b5
 
 **Reproduction summary:**
 I reproduced issue number 148 by running the existing skill extractor unit tests and the examples from the GitHub issue description. To run the SkillExtractor tests, I ran pytest tests/unit/test_skill_extractor.py -v. I also ran the example text from the GitHub issue description using SkillExtractor.extract_skills(). The JavaScript example returned no detected skills, and the TypeScript example detected React but did not detect TypeScript or JavaScript. The existing test_javascript_detection and test_text_with_typescript_files tests also failed for the same missing detections.
 
-**PLAN.md link:** [link to PLAN.md in your fork]
+**PLAN.md link:** https://github.com/OzzyT26/pathreview/commit/6c34856
 
 **Walkthrough video (recommended):**
 
