@@ -182,10 +182,17 @@ class SkillExtractor:
             js_evidence.append("JavaScript filename in text (.js)")
         if "package.json" in text_lower:
             js_evidence.append("package.json found")
+        typescript_filename_in_text = bool(re.search(r"\b[\w.-]+\.ts\b", text_lower))
+        if typescript_filename_in_text:
+            js_evidence.append("TypeScript filename in text (.ts)")
 
         if js_evidence:
             confidence = min(0.95, 0.6 + len(js_evidence) * 0.1)
-            lang = "TypeScript" if ".ts" in str(filename or "").lower() else "JavaScript"
+            lang = (
+                "TypeScript"
+                if ".ts" in str(filename or "").lower() or typescript_filename_in_text
+                else "JavaScript"
+            )
             skills_dict[lang] = SkillDetection(
                 name=lang,
                 category="Language",

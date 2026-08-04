@@ -192,6 +192,16 @@ class TestSkillExtractor:
         skill_names = [s.name for s in result]
         assert "JavaScript" in skill_names
 
+    def test_typescript_detection_from_ts_filename_in_text(self, extractor):
+        """Test TypeScript detection of .ts filename in text."""
+        text = """
+        Defined shared types in types.ts.
+        """
+        result = extractor.extract_skills(text)
+
+        skill_names = [s.name for s in result]
+        assert "TypeScript" in skill_names
+
     def test_docker_compose_detection(self, extractor):
         """Test Docker and Docker Compose detection."""
         text = """
