@@ -61,6 +61,16 @@ class TestSkillExtractor:
         # Should detect TypeScript
         assert any("typescript" in s.lower() for s in skill_names)
 
+    def test_typescript_detection_from_language_name_in_text(self, extractor):
+        """Test TypeScript detection from the language name in text."""
+        text = """
+        Built the application using TypeScript.
+        """
+        result = extractor.extract_skills(text)
+
+        skill_names = [s.name for s in result]
+        assert "TypeScript" in skill_names
+
     def test_jupyter_ipynb_detection(self, extractor):
         """Test Python/Jupyter detection from .ipynb reference."""
         text = """

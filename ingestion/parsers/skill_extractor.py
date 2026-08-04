@@ -185,12 +185,17 @@ class SkillExtractor:
         typescript_filename_in_text = bool(re.search(r"\b[\w.-]+\.tsx?\b", text_lower))
         if typescript_filename_in_text:
             js_evidence.append("TypeScript filename in text (.ts or .tsx)")
+        typescript_literal_in_text = "typescript" in text_lower
+        if typescript_literal_in_text:
+            js_evidence.append("TypeScript mentioned in text")
 
         if js_evidence:
             confidence = min(0.95, 0.6 + len(js_evidence) * 0.1)
             lang = (
                 "TypeScript"
-                if ".ts" in str(filename or "").lower() or typescript_filename_in_text
+                if ".ts" in str(filename or "").lower()
+                or typescript_filename_in_text
+                or typescript_literal_in_text
                 else "JavaScript"
             )
             skills_dict[lang] = SkillDetection(
