@@ -202,6 +202,16 @@ class TestSkillExtractor:
         skill_names = [s.name for s in result]
         assert "TypeScript" in skill_names
 
+    def test_typescript_detection_from_tsx_filename_in_text(self, extractor):
+        """Test TypeScript detection from a .tsx filename in text."""
+        text = """
+        Built the main interface in app.tsx.
+        """
+        result = extractor.extract_skills(text)
+
+        skill_names = [s.name for s in result]
+        assert "TypeScript" in skill_names
+
     def test_docker_compose_detection(self, extractor):
         """Test Docker and Docker Compose detection."""
         text = """

@@ -182,9 +182,9 @@ class SkillExtractor:
             js_evidence.append("JavaScript filename in text (.js)")
         if "package.json" in text_lower:
             js_evidence.append("package.json found")
-        typescript_filename_in_text = bool(re.search(r"\b[\w.-]+\.ts\b", text_lower))
+        typescript_filename_in_text = bool(re.search(r"\b[\w.-]+\.tsx?\b", text_lower))
         if typescript_filename_in_text:
-            js_evidence.append("TypeScript filename in text (.ts)")
+            js_evidence.append("TypeScript filename in text (.ts or .tsx)")
 
         if js_evidence:
             confidence = min(0.95, 0.6 + len(js_evidence) * 0.1)
