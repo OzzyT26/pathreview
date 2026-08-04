@@ -57,3 +57,23 @@ I also verified that the existing test_javascript_detection and test_text_with_t
 Now that my implementation is complete, my next step is to open my pull request, request peer feedback, and submit for review. I'll also update JOURNAL.md.
 
 **Blockers:**
+
+---
+
+### Check-in 2 (end of week)
+
+**PR link:** https://github.com/ascherj/pathreview/pull/836
+
+**Branch:** `fix/148-js-ts-skill-detection`
+
+**What you built:**
+I updated SkillExtractor so that JavaScript and TypeScript are detected when evidence appears directly in the input text instead of relying only on the optional filename parameter. The detector now recognizes .js, .ts, and .tsx filenames in text, the literal word TypeScript, and additional JavaScript and TypeScript syntax while preserving the existing detection behavior for other languages and frameworks.
+
+**Tests added or updated:**
+I updated tests/unit/test_skill_extractor.py by adding targeted regression tests for JavaScript detection from .js filenames in text, TypeScript detection from .ts and .tsx filenames in text, and TypeScript detection from the literal word TypeScript. I also reran the full test_skill_extractor.py test suite to verify that the related JavaScript and TypeScript tests now pass.
+
+**Self-review confirmation:** [ ] make check passes  [ ] make test-unit passes
+
+make check and make test-unit report pre-existing failures outside the scope of Issue #148. I verified my changes by running the focused checks for skill_extractor.py and the complete tests/unit/test_skill_extractor.py test suite.
+
+**Draft PR feedback received from:** none
