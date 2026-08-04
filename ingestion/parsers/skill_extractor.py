@@ -176,10 +176,12 @@ class SkillExtractor:
             js_evidence.append("JavaScript file extension (.js)")
         if ".ts" in str(filename or "").lower():
             js_evidence.append("TypeScript file extension (.ts)")
-        if re.search(r"\b(import|require)\s+", text):
+        if re.search(r"\bimport\s+|\brequire\s*\(", text):
             js_evidence.append("CommonJS or ES6 imports")
         if re.search(r"\b[\w.-]+\.js\b", text_lower):
             js_evidence.append("JavaScript filename in text (.js)")
+        if re.search(r"\b(const|let)\b", text):
+            js_evidence.append("JavaScript variable declarations")
         if "package.json" in text_lower:
             js_evidence.append("package.json found")
         typescript_filename_in_text = bool(re.search(r"\b[\w.-]+\.tsx?\b", text_lower))
