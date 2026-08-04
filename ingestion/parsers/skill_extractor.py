@@ -190,6 +190,11 @@ class SkillExtractor:
         typescript_literal_in_text = "typescript" in text_lower
         if typescript_literal_in_text:
             js_evidence.append("TypeScript mentioned in text")
+        typescript_syntax_in_text = bool(
+            re.search(r"\b(interface|enum)\s+\w+|\btype\s+\w+\s*=", text_lower)
+        )
+        if typescript_syntax_in_text:
+            js_evidence.append("TypeScript declaration syntax")
 
         if js_evidence:
             confidence = min(0.95, 0.6 + len(js_evidence) * 0.1)
@@ -198,6 +203,7 @@ class SkillExtractor:
                 if ".ts" in str(filename or "").lower()
                 or typescript_filename_in_text
                 or typescript_literal_in_text
+                or typescript_syntax_in_text
                 else "JavaScript"
             )
             skills_dict[lang] = SkillDetection(
