@@ -77,3 +77,39 @@ I updated tests/unit/test_skill_extractor.py by adding targeted regression tests
 make check and make test-unit report pre-existing failures outside the scope of Issue #148. I verified my changes by running the focused checks for skill_extractor.py and the complete tests/unit/test_skill_extractor.py test suite.
 
 **Draft PR feedback received from:** none
+
+## Week 10 — Iteration & reflection
+
+### Reviewer feedback
+
+**Feedback received:** [ ] Yes  [X] No — still awaiting review
+
+**Summary of feedback:**
+No review came in.
+
+**How you responded:**
+
+---
+
+### Reflection
+
+**What was harder than you expected?**
+When I first read the issue description and saw that it listed related tests in the test_skill_extractor test suite, I thought this would be an easy way to reproduce the issue and test my fixes. However, I found that the tests in test_skill_extractor were related, but didn't cover the exact issues described in the issue. I ended up writing my own tests to reproduce those cases. Committing my work also ended up being much harder than I expected. When I tried to commit, mypy would sometimes block my commits because of type-checking errors that were unrelated to the part of the codebase I was working on.
+
+**What did you learn about working in a large codebase?**
+I learned that I have to understand a project's conventions and follow them. I hadn't thought much about that before. In group projects that I completed in school, everyone did their own part, mostly using their own conventions, and at the end we put the pieces together. Here, the project was already built and conventions were established, so part of my work was learning and following the project's existing style and development conventions. I also found that the codebase was easier to navigate than I thought it would be. When I first opened it, because we had already learned about RAG pipelines, it was easy for me to figure out that skill_extractor.py would likely be in the ingestion folder.
+
+**How did AI tools help — and where did they fall short?**
+I found AI tools extremely helpful for stress-testing my ideas. I wanted to debug the issue myself, so I instructed my AI assistant not to generate the answer, but instead to collaborate with me and help me refine my ideas. There were several times when I disagreed with the AI assistant, and after I explained my reasoning, it agreed that my approach was reasonable.
+
+For example, I was writing a test for TypeScript detection in SkillExtractor. The goal was for SkillExtractor to recognize TypeScript filename endings in the input text. The AI assistant suggested a test sentence that was full of TypeScript syntax and also included a .ts filename. I pointed out that if the text contained a lot of TypeScript syntax, it would be impossible to tell whether my new .ts filename detection was actually working or whether another part of the TypeScript detection logic was responsible for the result. I was somewhat surprised when the AI assistant agreed with my reasoning and said that the more isolated test was a better approach. This reinforced for me that AI suggestions still need to be evaluated rather than accepted automatically.
+
+**What would you do differently if you started over?**
+When I read the issue description and saw that it listed related failing tests, I assumed those tests would directly recreate the issue. Later, after reading the test_skill_extractor file more carefully, I found that this was not the case. It wasn't a major problem because I was able to create my own tests, but in the future I would read the relevant test files in more detail before selecting an issue to make sure I understand exactly what is already covered.
+
+Also, for this particular assignment, I initially found it difficult to tell which parts of the planning process were supposed to be completed before reading the code and which were supposed to be completed afterward. This led to me spending a lot of time trying to come up with a plan without looking at the implementation. I eventually realized that I could examine the code, so I deleted my original draft and rewrote my plan after reading it. If I were starting over, I would read the relevant code much earlier in the process.
+
+Regarding my implementation, while exploring skill_extractor.py, I found sets at the top of the file (PYTHON_KEYWORDS, JS_TS_KEYWORDS, etc.) that list keywords for different programming languages. However, these sets were not used by the original implementation. I chose not to refactor the detection logic to use these sets because I felt that would go beyond the scope of the issue I selected. However, using those existing sets could potentially improve other parts of the skill detection logic. If I had more time, I would investigate whether the detector should be refactored to use them.
+
+**What are you most proud of from this module?**
+I am most proud of opening my first PR and learning the workflow for making an open-source contribution. The issue itself wasn't too difficult to debug, but I enjoyed going through the entire process step by step: creating tests to reproduce the issue, developing a plan, implementing the fix, testing it, and making sure I didn't introduce regressions related to my changes. I was also initially intimidated by the idea of navigating a large and unfamiliar codebase, but I found it much easier to understand and work with than I expected.
